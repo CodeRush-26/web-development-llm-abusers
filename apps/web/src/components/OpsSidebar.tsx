@@ -12,7 +12,7 @@ import {
 import type { Directive, FleetSnapshot, Ship } from "@strait-command/shared";
 import { MapLegend } from "@/components/MapLegend";
 import { StraitMonitorCard } from "@/components/StraitMonitorCard";
-import { fleetSocket } from "@/lib/socket";
+import { getFleetSocket } from "@/lib/socket";
 import {
   fuelOutlookForShip,
   nearestWeatherCell,
@@ -230,7 +230,7 @@ export function OpsSidebar() {
     const st = useFleetStore.getState();
     if (st.zoneDraft.length < ZONE_VERTEX_MIN) return;
     if (st.zoneDraft.length !== st.zoneVertexTarget) return;
-    fleetSocket.emit("zone:save", {
+    getFleetSocket().emit("zone:save", {
       name: `RZ-${Math.floor(Date.now() / 1000) % 10000}`,
       coordinates: st.zoneDraft,
     });
@@ -247,7 +247,7 @@ export function OpsSidebar() {
         ? snapshot?.ships.find((s) => s.shipId === selectedShipId)
         : ships[0];
     if (!ship) return;
-    fleetSocket.emit("directive:send", {
+    getFleetSocket().emit("directive:send", {
       type,
       shipId: ship.shipId,
       targetPortId: extra?.portId,
@@ -262,7 +262,7 @@ export function OpsSidebar() {
     const ship = snapshot?.ships.find((s) => s.shipId === captainShipId);
     const d = ship?.pendingDirective;
     if (!d) return;
-    fleetSocket.emit("captain:respond", {
+    getFleetSocket().emit("captain:respond", {
       directiveId: d.id,
       shipId: captainShipId,
       action,
@@ -701,7 +701,7 @@ export function OpsSidebar() {
                               )
                             )
                               return;
-                            fleetSocket.emit("zone:delete", z.id);
+                            getFleetSocket().emit("zone:delete", z.id);
                           }}
                           className="shrink-0 rounded-lg border border-red-500/45 bg-red-500/10 px-2.5 py-1.5 text-xs font-semibold text-red-800 shadow-sm transition hover:bg-red-500/20 dark:border-red-500/40 dark:bg-red-950/50 dark:text-red-200 dark:hover:bg-red-950/80"
                         >

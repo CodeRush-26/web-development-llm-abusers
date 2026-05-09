@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "postinstall": "npm run build -w @strait-command/shared",
-    "dev": "concurrently -n server,web -c cyan,magenta \"npm run dev -w apps/server\" \"npm run dev -w apps/web\"",
+    "dev": "node scripts/free-dev-ports.mjs && concurrently -n server,web -c cyan,magenta \"npm run dev -w apps/server\" \"npm run dev -w apps/web\"",
     "build": "npm run build -w packages/shared && npm run build -w apps/server && npm run build -w apps/web",
     "start": "concurrently -n server,web \"npm run start -w apps/server\" \"npm run start -w apps/web\"",
     "smoke": "node scripts/smoke.mjs"

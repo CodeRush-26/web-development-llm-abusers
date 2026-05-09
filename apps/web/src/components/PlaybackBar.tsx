@@ -1,6 +1,6 @@
 "use client";
 
-import { fleetSocket } from "@/lib/socket";
+import { getFleetSocket } from "@/lib/socket";
 import { useFleetStore } from "@/store/fleetStore";
 
 export function PlaybackBar() {
@@ -10,7 +10,7 @@ export function PlaybackBar() {
   const playbackActive = useFleetStore((s) => s.playbackActive);
   const setPlaybackActive = useFleetStore((s) => s.setPlaybackActive);
   const load = (): void => {
-    fleetSocket.emit("playback:request");
+    getFleetSocket().emit("playback:request");
   };
 
   const maxIdx = Math.max(0, playbackFrames.length - 1);

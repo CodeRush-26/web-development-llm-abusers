@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import type { Alert } from "@strait-command/shared";
-import { fleetSocket } from "@/lib/socket";
+import { getFleetSocket } from "@/lib/socket";
 import { EMPTY_ALERTS } from "@/store/emptyRefs";
 import { useFleetStore } from "@/store/fleetStore";
 import clsx from "clsx";
@@ -28,7 +28,7 @@ export function AlertStrip() {
   );
 
   const ack = (id: string): void => {
-    fleetSocket.emit("alert:ack", { alertId: id, operatorId: "web-operator" });
+    getFleetSocket().emit("alert:ack", { alertId: id, operatorId: "web-operator" });
   };
 
   return (

@@ -6,6 +6,7 @@ import maplibregl, {
   type Map as MapLibreMap,
 } from "maplibre-gl";
 import type { Position } from "@strait-command/shared";
+import { getFleetApiOrigin } from "@/lib/fleetApiOrigin";
 import { isMaritimeZoneVertexAllowed } from "@/lib/maritimeZone";
 import { useFleetStore, type UiTheme } from "@/store/fleetStore";
 import clsx from "clsx";
@@ -1017,7 +1018,7 @@ export function FleetMap({ className }: { className?: string }) {
               <>
                 <strong className="font-semibold">Checking API…</strong> Waiting for{" "}
                 <code className="rounded bg-black/10 px-1.5 py-0.5 font-mono text-[0.7rem] dark:bg-white/10">
-                  {process.env.NEXT_PUBLIC_WS_URL ?? "http://localhost:4000"}
+                  {getFleetApiOrigin()}
                 </code>
                 .
               </>
@@ -1030,7 +1031,7 @@ export function FleetMap({ className }: { className?: string }) {
                 </code>
                 ), set{" "}
                 <code className="rounded bg-black/10 px-1.5 py-0.5 font-mono text-[0.7rem] dark:bg-white/10">
-                  NEXT_PUBLIC_WS_URL=http://localhost:4000
+                  NEXT_PUBLIC_WS_URL=https://your-api-host
                 </code>{" "}
                 for apps/web, then refresh.
               </>

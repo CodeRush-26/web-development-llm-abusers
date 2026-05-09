@@ -1,4 +1,13 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ncRwI7td)
+---
+title: Strait Command API
+emoji: 🚢
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+---
+
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/qMg4I596)
 
 # Strait Command — Maritime Crisis Operations Platform
 
@@ -44,7 +53,36 @@ Copy `.env.example` to **`.env`** at the **repository root** (same folder as `pa
 | `GROQ_MODEL` | Server | Optional; default **`llama-3.3-70b-versatile`** |
 | `GROQ_API_BASE` | Server | Optional; override Groq OpenAI-compatible URL |
 | `PORT` | Server | Default **4000** |
-| `NEXT_PUBLIC_WS_URL` | Web | Browser WebSocket origin (loaded via `next.config.ts`), default **`http://localhost:4000`** |
+| `NEXT_PUBLIC_WS_URL` | Web | Optional override for fleet API URL. When unset, the UI picks **`http://localhost:4000`** on localhost, **same origin** on **`*.hf.space`**, or **`http(s)://<hostname>:4000`** otherwise (LAN). Set when the API is hosted separately (e.g. **`https://….hf.space`**). |
+
+### Hugging Face Space (Docker backend only)
+
+The repository root **`Dockerfile`** defaults to the **API** image listening on **`PORT`** (**`7860`** in the image; overridden to **`4000`** by `docker-compose` locally). In your Space, open **Settings → Variables and secrets** and add:
+
+| Name | Visibility | Value |
+| --- | --- | --- |
+| `PORT` | Public variable | **`7860`** (must match **README** `app_port` unless you change both) |
+| `GROQ_API_KEY` | Secret | Your Groq API key, or leave unset for heuristic-only distress handling |
+| `GROQ_MODEL` | Public variable | Optional; default **`llama-3.3-70b-versatile`** |
+
+For **`npm run dev`** on your laptop with the API still on Hugging Face, set **`NEXT_PUBLIC_WS_URL=https://<your-subdomain>.hf.space`** in **`.env`**. For purely local dev (server + web on localhost), leave **`NEXT_PUBLIC_WS_URL`** unset. If you host the Next app on the same **`*.hf.space`** origin as the Docker API, the UI uses **same origin** automatically without that variable.
+
+**Deploy:** Hugging Face **does not accept your account password** over HTTPS Git — use a **[User Access Token](https://huggingface.co/settings/tokens)** (write) as the **password**, or SSH.
+
+```bash
+git remote add hf https://huggingface.co/spaces/asad01001/Strait_of_Hormuz
+git push hf main
+```
+
+When prompted: **Username** = your Hugging Face username; **Password** = paste the token (starts with `hf_`), not your login password.
+
+Alternatively set the remote once with embedded credentials (avoid sharing the URL — it contains the token):
+
+```bash
+git remote add hf https://YOUR_USERNAME:hf_YOUR_TOKEN@huggingface.co/spaces/asad01001/Strait_of_Hormuz
+```
+
+Or use the [Hugging Face Hub CLI](https://huggingface.co/docs/huggingface_hub/guides/cli) with `HF_TOKEN` set.
 
 ## Local development
 

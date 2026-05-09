@@ -10,11 +10,10 @@ import type {
 } from "@strait-command/shared";
 import { playAlertChime, unlockAlertAudio } from "@/lib/alertChime";
 import { playDirectiveChime } from "@/lib/directiveChime";
-import { fleetSocket as socket } from "@/lib/socket";
+import { getFleetApiOrigin } from "@/lib/fleetApiOrigin";
+import { getFleetSocket } from "@/lib/socket";
 import { useFleetStore } from "@/store/fleetStore";
 import { useToastStore } from "@/store/toastStore";
-
-const WS_BASE = process.env.NEXT_PUBLIC_WS_URL ?? "http://localhost:4000";
 
 function formatDirectiveAppliedSummary(snap: FleetSnapshot | null, d: Directive): string {
   const ship = snap?.ships.find((s) => s.shipId === d.shipId);
@@ -45,6 +44,7 @@ function toastVariantForAlert(a: Alert): "danger" | "warning" | "info" {
 }
 
 export function SyncBus(): null {
+  const socket = getFleetSocket();
   const role = useFleetStore((s) => s.role);
   const captainShipId = useFleetStore((s) => s.captainShipId);
   const alertBootstrapDone = useRef(false);
@@ -166,7 +166,7 @@ export function SyncBus(): null {
     void (async () => {
       while (!cancelled) {
         try {
-          const res = await fetch(`${WS_BASE}/health`);
+          const res = await fetch(`${getFleetApiOrigin()}/health`);
           const j = (await res.json()) as { ok?: boolean; booting?: boolean };
           if (j.ok && j.booting !== true) break;
           useFleetStore.getState().setFleetApiStatus(j.booting === true ? "starting" : "checking");

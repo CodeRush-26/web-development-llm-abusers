@@ -1,6 +1,6 @@
 "use client";
 
-import { fleetSocket } from "@/lib/socket";
+import { getFleetSocket } from "@/lib/socket";
 import { useFleetStore } from "@/store/fleetStore";
 import { EMPTY_SHIPS } from "@/store/emptyRefs";
 import clsx from "clsx";
@@ -150,7 +150,7 @@ export function TopHud() {
         {role === "command" && (
           <button
             type="button"
-            onClick={() => fleetSocket.emit("sim:setPaused", { paused: !simPaused })}
+            onClick={() => getFleetSocket().emit("sim:setPaused", { paused: !simPaused })}
             title={simPaused ? "Resume simulation (clock & physics)" : "Freeze simulation"}
             className={clsx(
               "h-9 shrink-0 rounded-xl border px-3 py-1.5 text-xs font-semibold shadow-sm transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-cyan-500/50",
