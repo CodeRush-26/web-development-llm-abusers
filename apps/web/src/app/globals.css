@@ -1,0 +1,100 @@
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark:root,
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-tactical-bg dark:text-slate-100;
+  min-height: 100dvh;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/** Hide scrollbars but keep scroll / wheel (sidebar feeds, alert stack, etc.) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.glass-panel {
+  @apply rounded-2xl border shadow-xl backdrop-blur-xl;
+  @apply border-slate-300/70 bg-white/85;
+}
+
+.dark .glass-panel {
+  border-color: rgba(34, 211, 238, 0.14);
+  background: rgba(6, 11, 28, 0.82);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(34, 211, 238, 0.06);
+}
+
+/** Section titles — readable hierarchy (avoid text-* custom tokens in @apply — Tailwind/PostCSS may not resolve them here) */
+.ui-section-title {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  @apply font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-400/90;
+}
+
+.ui-section-desc {
+  @apply mt-1 text-xs leading-snug text-slate-600 dark:text-slate-500;
+}
+
+.ui-card-title {
+  @apply text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-50;
+}
+
+.ui-btn-primary {
+  @apply rounded-lg border px-3 py-2 text-sm font-medium transition focus:outline-none focus:ring-2;
+  @apply border-cyan-600/45 bg-cyan-500/10 text-cyan-950 hover:bg-cyan-500/20 focus:ring-cyan-500/40;
+  @apply dark:border-cyan-500/45 dark:bg-cyan-500/10 dark:text-cyan-100 dark:hover:bg-cyan-500/20 dark:focus:ring-cyan-500/40;
+}
+
+.ui-btn-secondary {
+  @apply rounded-lg border border-slate-300 bg-white/90 px-3 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400/40 dark:border-slate-600 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:bg-slate-800 dark:focus:ring-slate-500/40;
+}
+
+.ui-select {
+  @apply rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-cyan-600/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 dark:border-slate-600 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-cyan-500/50;
+}
+
+.scanlines::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.018) 3px
+  );
+  z-index: 1;
+  opacity: 0.28;
+}
+
+html:not(.dark) .scanlines::before {
+  opacity: 0.06;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(14, 116, 144, 0.06) 3px
+  );
+}

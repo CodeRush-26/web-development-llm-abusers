@@ -1,0 +1,312 @@
+{
+  "scenario": {
+    "name": "Strait of Hormuz Crisis",
+    "description": "Major shipping chokepoint flagged as a High-Risk Red Zone after sudden geopolitical instability and naval blockades. Fifteen commercial cargo ships are in transit through the Persian Gulf, Strait of Hormuz, and Gulf of Oman."
+  },
+  "coordinateFormat": "[lat, lng]",
+  "units": {
+    "speed": "knots",
+    "fuel": "tons",
+    "heading": "degrees from true north (0-360)"
+  },
+  "boundingBox": {
+    "north": 30.5,
+    "south": 22.0,
+    "east": 60.0,
+    "west": 47.5
+  },
+  "navigableWater": [
+    [29.80, 48.60],
+    [29.50, 50.00],
+    [28.80, 50.80],
+    [27.95, 52.00],
+    [27.15, 53.46],
+    [26.88, 54.96],
+    [27.08, 56.06],
+    [26.95, 56.36],
+    [26.52, 56.76],
+    [26.05, 57.46],
+    [25.50, 58.50],
+    [25.00, 60.00],
+    [22.00, 60.00],
+    [23.95, 58.78],
+    [24.68, 57.18],
+    [25.42, 56.46],
+    [26.68, 56.40],
+    [26.52, 55.85],
+    [26.22, 55.46],
+    [25.48, 54.46],
+    [24.98, 52.96],
+    [25.38, 52.02],
+    [26.45, 51.48],
+    [26.52, 50.28],
+    [27.55, 49.78],
+    [28.52, 49.02],
+    [29.52, 48.32],
+    [29.80, 48.60]
+  ],
+  "landExclusions": [
+    [
+      [29.15, 50.05],
+      [29.05, 51.55],
+      [28.58, 51.78],
+      [28.05, 51.22],
+      [28.08, 50.58],
+      [28.52, 49.92],
+      [29.02, 49.82],
+      [29.15, 50.05]
+    ],
+    [
+      [29.52, 48.42],
+      [29.38, 50.65],
+      [28.82, 51.05],
+      [28.28, 50.48],
+      [28.48, 49.28],
+      [29.22, 48.38],
+      [29.52, 48.42]
+    ],
+    [
+      [26.50, 55.70],
+      [26.70, 55.70],
+      [26.70, 56.00],
+      [26.50, 56.00],
+      [26.50, 55.70]
+    ],
+    [
+      [27.00, 56.32],
+      [27.12, 56.32],
+      [27.12, 56.52],
+      [27.00, 56.52],
+      [27.00, 56.32]
+    ],
+    [
+      [26.80, 56.25],
+      [26.92, 56.25],
+      [26.92, 56.40],
+      [26.80, 56.40],
+      [26.80, 56.25]
+    ],
+    [
+      [26.58, 55.80],
+      [26.70, 55.80],
+      [26.70, 55.96],
+      [26.58, 55.96],
+      [26.58, 55.80]
+    ],
+    [
+      [25.83, 54.98],
+      [25.93, 54.98],
+      [25.93, 55.08],
+      [25.83, 55.08],
+      [25.83, 54.98]
+    ],
+    [
+      [26.21, 55.26],
+      [26.31, 55.26],
+      [26.31, 55.36],
+      [26.21, 55.36],
+      [26.21, 55.26]
+    ],
+    [
+      [26.20, 55.10],
+      [26.28, 55.10],
+      [26.28, 55.18],
+      [26.20, 55.18],
+      [26.20, 55.10]
+    ]
+  ],
+  "ports": [
+    { "id": "KWT-1", "name": "Kuwait City",   "position": [29.48, 48.34] },
+    { "id": "BUS-1", "name": "Bushehr",       "position": [28.83, 50.73] },
+    { "id": "DMM-1", "name": "Dammam",        "position": [26.56, 50.30] },
+    { "id": "BAH-1", "name": "Manama",        "position": [26.50, 50.55] },
+    { "id": "DOH-1", "name": "Doha",          "position": [25.46, 51.95] },
+    { "id": "AUH-1", "name": "Abu Dhabi",     "position": [25.22, 54.18] },
+    { "id": "DXB-1", "name": "Jebel Ali",     "position": [25.50, 54.75] },
+    { "id": "BND-1", "name": "Bandar Abbas",  "position": [26.62, 56.11] },
+    { "id": "SOH-1", "name": "Sohar",         "position": [24.72, 57.02] },
+    { "id": "MCT-1", "name": "Muscat",        "position": [23.92, 58.58] }
+  ],
+  "fleet": [
+    {
+      "shipId": "MV-1",
+      "name": "Aurora",
+      "position": [26.55, 56.20],
+      "speed": 14,
+      "heading": 105,
+      "source": "BND-1",
+      "destination": "MCT-1",
+      "fuel": 6800,
+      "cargo": "crude oil",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-2",
+      "name": "Borealis",
+      "position": [25.50, 57.20],
+      "speed": 19,
+      "heading": 270,
+      "source": "SOH-1",
+      "destination": "DXB-1",
+      "fuel": 5400,
+      "cargo": "containers",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-3",
+      "name": "Cygnus",
+      "position": [25.70, 53.00],
+      "speed": 16,
+      "heading": 95,
+      "source": "DOH-1",
+      "destination": "MCT-1",
+      "fuel": 7200,
+      "cargo": "LNG",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-4",
+      "name": "Dragon",
+      "position": [26.40, 56.00],
+      "speed": 13,
+      "heading": 110,
+      "source": "BND-1",
+      "destination": "SOH-1",
+      "fuel": 5800,
+      "cargo": "bulk grain",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-5",
+      "name": "Emerald",
+      "position": [27.50, 51.20],
+      "speed": 12,
+      "heading": 165,
+      "source": "BAH-1",
+      "destination": "DOH-1",
+      "fuel": 8200,
+      "cargo": "crude oil",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-6",
+      "name": "Falcon",
+      "position": [25.40, 54.53],
+      "speed": 22,
+      "heading": 280,
+      "source": "DXB-1",
+      "destination": "DOH-1",
+      "fuel": 4100,
+      "cargo": "containers",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-7",
+      "name": "Gharial",
+      "position": [26.50, 53.50],
+      "speed": 14,
+      "heading": 270,
+      "source": "AUH-1",
+      "destination": "KWT-1",
+      "fuel": 750,
+      "cargo": "crude oil",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-8",
+      "name": "Halcyon",
+      "position": [24.93, 56.94],
+      "speed": 19,
+      "heading": 250,
+      "source": "SOH-1",
+      "destination": "DMM-1",
+      "fuel": 5200,
+      "cargo": "automobiles",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-9",
+      "name": "Iris",
+      "position": [28.20, 50.30],
+      "speed": 13,
+      "heading": 175,
+      "source": "BUS-1",
+      "destination": "BAH-1",
+      "fuel": 7800,
+      "cargo": "crude oil",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-10",
+      "name": "Jade",
+      "position": [25.02, 57.96],
+      "speed": 20,
+      "heading": 285,
+      "source": "SOH-1",
+      "destination": "BND-1",
+      "fuel": 6300,
+      "cargo": "containers",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-11",
+      "name": "Kite",
+      "position": [25.64, 52.18],
+      "speed": 18,
+      "heading": 95,
+      "source": "DOH-1",
+      "destination": "MCT-1",
+      "fuel": 7600,
+      "cargo": "LNG",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-12",
+      "name": "Lotus",
+      "position": [29.10, 48.80],
+      "speed": 12,
+      "heading": 145,
+      "source": "KWT-1",
+      "destination": "SOH-1",
+      "fuel": 8500,
+      "cargo": "crude oil",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-13",
+      "name": "Mirage",
+      "position": [24.60, 57.30],
+      "speed": 21,
+      "heading": 320,
+      "source": "SOH-1",
+      "destination": "BAH-1",
+      "fuel": 5900,
+      "cargo": "containers",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-14",
+      "name": "Nova",
+      "position": [24.12, 58.43],
+      "speed": 11,
+      "heading": 290,
+      "source": "MCT-1",
+      "destination": "DOH-1",
+      "fuel": 4600,
+      "cargo": "bulk cement",
+      "status": "normal"
+    },
+    {
+      "shipId": "MV-15",
+      "name": "Orca",
+      "position": [26.34, 55.91],
+      "speed": 13,
+      "heading": 215,
+      "source": "BND-1",
+      "destination": "MCT-1",
+      "fuel": 7100,
+      "cargo": "crude oil",
+      "status": "normal"
+    }
+  ]
+}

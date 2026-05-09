@@ -1,0 +1,25 @@
+{
+  "name": "@strait-command/server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build:land": "tsx src/tools/generateLandExclusions.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.2",
+    "@strait-command/shared": "*",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.1",
+    "polygon-clipping": "^0.15.7",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
