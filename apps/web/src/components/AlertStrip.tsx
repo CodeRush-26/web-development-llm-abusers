@@ -32,7 +32,7 @@ export function AlertStrip() {
   };
 
   return (
-    <div className="pointer-events-none absolute right-2 top-2 z-50 flex flex-col items-end gap-2 sm:right-3 sm:top-3">
+    <div className="pointer-events-none relative z-50 flex flex-col items-end gap-2">
       <div className="pointer-events-auto flex items-start gap-2">
         <button
           type="button"

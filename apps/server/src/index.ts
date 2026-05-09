@@ -14,10 +14,12 @@ import { SimulationEngine } from "./simulation/engine";
 import { fetchWeatherGrid } from "./services/weather";
 import { analyzeDistressMessage, distressPriorityBoost } from "./services/distressAi";
 import { appendServerEvent } from "./services/eventLog";
+import { buildStraitNewsBrief } from "./services/straitNewsFeed";
 import { v4 as uuidv4 } from "uuid";
 
 const PORT = Number(process.env.PORT ?? 4000);
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const MEDIASTACK_API_KEY = process.env.MEDIASTACK_API_KEY;
 
 interface SocketData {
   role?: "command" | "captain";
@@ -245,6 +247,15 @@ async function main(): Promise<void> {
       simulationPaused: engine.simulationPaused,
       ships: engine.ships.length,
     };
+  });
+
+  fastify.get("/news/strait", async (request) => {
+    const refresh = (request.query as { refresh?: string }).refresh === "1";
+    return buildStraitNewsBrief({
+      mediastackKey: MEDIASTACK_API_KEY,
+      groqKey: GROQ_API_KEY,
+      skipCache: refresh,
+    });
   });
 
   await fastify.listen({ port: PORT, host: "0.0.0.0" });

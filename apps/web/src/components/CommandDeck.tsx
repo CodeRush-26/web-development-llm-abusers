@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { TopHud } from "@/components/TopHud";
 import { OpsSidebar } from "@/components/OpsSidebar";
 import { AlertStrip } from "@/components/AlertStrip";
+import { StraitNewsStrip } from "@/components/StraitNewsStrip";
 import { PlaybackBar } from "@/components/PlaybackBar";
 import { SyncBus } from "@/components/SyncBus";
 import { ToastHost } from "@/components/ToastHost";
@@ -53,7 +54,10 @@ export default function CommandDeck() {
           )}
         >
           <FleetMap className="h-full border-0 shadow-none ring-0" />
-          <AlertStrip />
+          <div className="pointer-events-none absolute right-2 top-2 z-50 flex flex-row items-start gap-2 sm:right-3 sm:top-3">
+            <StraitNewsStrip />
+            <AlertStrip />
+          </div>
           <div className="pointer-events-none absolute bottom-2 left-2 right-2 flex justify-center sm:left-auto sm:right-3 sm:justify-end">
             <p
               className={clsx(
